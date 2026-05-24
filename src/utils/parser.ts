@@ -7,6 +7,10 @@ export interface CampaignPackage {
   visualPoster?: string;
   broadcastCopy?: string;
   socialCaption?: string;
+  timelineTeam?: string;
+  budgeting?: string;
+  rundown?: string;
+  mcCueCard?: string;
   isMinim: boolean;
   isInappropriate: boolean;
   colors: string[];
@@ -27,6 +31,10 @@ export function parseCampaignOutput(
   let visualPoster = "";
   let broadcastCopy = "";
   let socialCaption = "";
+  let timelineTeam = "";
+  let budgeting = "";
+  let rundown = "";
+  let mcCueCard = "";
   let isMinim = false;
   let isInappropriate = false;
 
@@ -50,6 +58,14 @@ export function parseCampaignOutput(
       broadcastCopy = content;
     } else if (headerUpper.includes("CAPTION") || headerUpper.includes("MEDIA SOSIAL")) {
       socialCaption = content;
+    } else if (headerUpper.includes("TIMELINE") || headerUpper.includes("PEMBAGIAN TIM") || headerUpper.includes("SDM")) {
+      timelineTeam = content;
+    } else if (headerUpper.includes("ANGGARAN") || headerUpper.includes("BUDGETING") || headerUpper.includes("BUDGET")) {
+      budgeting = content;
+    } else if (headerUpper.includes("RUNDOWN")) {
+      rundown = content;
+    } else if (headerUpper.includes("CUE CARD") || headerUpper.includes("MC")) {
+      mcCueCard = content;
     } else if (
       headerUpper.includes("ERROR") || 
       headerUpper.includes("KONTEN TIDAK PANTAS") || 
@@ -79,6 +95,10 @@ export function parseCampaignOutput(
     visualPoster,
     broadcastCopy,
     socialCaption,
+    timelineTeam,
+    budgeting,
+    rundown,
+    mcCueCard,
     isMinim: isMinim || rawText.includes("KLARIFIKASI INPUT"),
     isInappropriate: isInappropriate || rawText.includes("ERROR: KONTEN TIDAK PANTAS"),
     colors: foundColors.slice(0, 5), // Limit to top 5 detected colors
