@@ -1,0 +1,6 @@
+{
+  "name": "AI Event Campaign Planner",
+  "description": "Platform instan untuk merancang konsep kreatif, gaya visual poster, copywriting siaran, dan caption media sosial untuk panitia acara kampus.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
